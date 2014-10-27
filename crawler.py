@@ -2,14 +2,14 @@
 import urllib2  
 import re  
 
-def GetInfo():  
+def GetInfo(name):  
    
    
    headers = {  
     'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6'  
      }  
    req = urllib2.Request(  
-    url='http://blog.csdn.net/buptgshengod',  
+    url='http://blog.csdn.net/'+name,  
     headers = headers  
     )  
   
@@ -21,14 +21,5 @@ def GetInfo():
         
    return str_result
 
-def test():
-   
-   str1='this is a test'
-   
-   return str1
+ 
 
-  # for x in xrange(0,7):  
-   #  print result[x]  
-   #   result  
-
-print GetInfo()

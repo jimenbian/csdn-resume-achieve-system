@@ -1,13 +1,14 @@
-##-*- coding: UTF-8 -*- 
+#-*- coding: UTF-8 -*- 
 from flask import Flask, render_template, request, redirect, url_for, abort, session
-import main
+import crawler
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'F34TF$($e34D';
+app.debug=True
 
 @app.route('/')
 def home():
-    return render_template('GitHub Résumé.html')
+    return render_template('index.html')
 
 @app.route('/signup', methods=['POST'])
 def signup():
@@ -17,11 +18,12 @@ def signup():
 
 @app.route('/message')
 def message():
-    a=main.GetInfo()[0]
-    a1=main.GetInfo()[1]
-    return render_template('message.html', message=a,message1=a1)
-
-if __name__ == '__main__':
-    app.run()
+    
+   try: 
+    return render_template('resume.html', message=crawler.GetInfo(session['message']),message_user=session['message'])
+   except EnvironmentError:
+   	return render_template('index.html')
+from bae.core.wsgi import WSGIApplication  
+application = WSGIApplication(app)  
 
 
