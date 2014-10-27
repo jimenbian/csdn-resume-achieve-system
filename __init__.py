@@ -1,4 +1,4 @@
-#-*- coding: UTF-8 -*- 
+##-*- coding: UTF-8 -*- 
 from flask import Flask, render_template, request, redirect, url_for, abort, session
 import main
 
@@ -7,11 +7,11 @@ app.config['SECRET_KEY'] = 'F34TF$($e34D';
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('GitHub Résumé.html')
 
 @app.route('/signup', methods=['POST'])
 def signup():
-    session['username'] = request.form['username']
+    #session['username'] = request.form['username']
     session['message'] = request.form['message']
     return redirect(url_for('message'))
 
@@ -19,10 +19,7 @@ def signup():
 def message():
     a=main.GetInfo()[0]
     a1=main.GetInfo()[1]
-    if not 'username' in session:
-        return abort(403)
-    return render_template('message.html', username=session['username'], 
-                                           message=a,message1=a1)
+    return render_template('message.html', message=a,message1=a1)
 
 if __name__ == '__main__':
     app.run()
