@@ -22,4 +22,4 @@ def GetInfo(name):
    return str_result
 
  
-
+print GetInfo('gshengod')
